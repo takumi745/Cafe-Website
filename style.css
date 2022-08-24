@@ -1,0 +1,481 @@
+/* ------------- 全体 -------------- */
+body {
+    
+}
+h1,
+h2,
+h3 {
+    margin: 0;
+    padding: 0;
+}
+img {
+    max-width: 100%;
+}
+a {
+    text-decoration: none;
+}
+ul {
+    list-style: none;
+}
+
+/*-------------------------------------------
+ヘッダー
+-------------------------------------------*/
+/*
+「position: fixed;」でヘッダーを固定し、「z-index: 10;」で前面に表示
+※他のコンテンツでpositionをrelative、absolute、fixedのいずれかに
+設定している場合は、z-indexの数値が大きい方が前面に表示される
+*/
+#header {
+    height: 60px;
+    display: flex;
+    padding-bottom: 8px;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    
+}
+
+header h1 img {
+    width: 140px;
+    margin-top: 30px;
+    padding-left: 25px;
+}
+
+/*
+ハンバーガーメニュー
+メニューが閉じている時は、「left: -300px;」で画面左に隠し、
+「opacity: 0;」で非表示にしている
+*/
+#navi {
+    position: fixed;
+    top: 0;
+    top: -300px;
+    width: 100%;
+    color: #fff;
+    padding-top: 60px;
+    padding-left: 30px;
+    padding-bottom: 45px;
+    transition: all 0.5s;
+    z-index: 20;
+}
+
+#navi a {
+    color: #FF99CC;
+    font-size: 15px;
+}
+
+#navi .link {
+    width: 250px;
+    padding-top: 20px;
+    margin-bottom: 14px;
+}
+
+#navi .navi-menu .link {
+    margin: 0 auto;
+    text-align: center;
+}
+
+#navi .navi-menu .link a {
+    font-size: 13px;
+}
+
+/*
+ハンバーガーメニュー
+メニューが開いている時は、「left: 0;」「opacity: 1;」で
+画面左に表示する
+*/
+.open #navi {
+    top: 0;
+    opacity: 1;
+    background: #fff;
+}
+
+.toggle_btn {
+    width: 30px;
+    height: 30px;
+    margin-top: 5px;
+    margin-right: 20px;
+    position: relative;
+    left: 1240px;
+    transition: all 0.5s;
+    cursor: pointer;
+    z-index: 20;
+    padding-right: 25px;
+}
+
+/*
+ハンバーガーメニューの線の設定（メニューが閉じている時）
+*/
+
+.toggle_btn span {
+    display: block;
+    position: absolute;
+    width: 30px;
+    height: 2px;
+    background-color: #FF99CC;
+    border-radius: 4px;
+    transition: all 0.5s;
+}
+
+/*
+1本目の線の位置を設定
+*/
+
+.toggle_btn span:nth-child(1) {
+    top: 10px;
+}
+
+/*
+2本目の線の位置を設定
+*/
+
+.toggle_btn span:nth-child(2) {
+    bottom: 10px;
+}
+
+.toggle_btn span:nth-child(3) {
+    bottom: 25px;
+}
+
+/*
+ハンバーガーメニューの線の設定（メニューが開いている時）
+線の色を白に変更
+*/
+
+.open .toggle_btn span {
+    background-color: #FF99CC;
+}
+/*
+1本目の線を-45度回転
+*/
+
+.open .toggle_btn span:nth-child(3) {
+    -webkit-transform: translateY(7px) rotate(-405deg);
+    transform: translateY(7px) rotate(-405deg);
+}
+
+/*
+2本目の線を45度回転
+*/
+
+.open .toggle_btn span:nth-child(2) {
+    -webkit-transform: translateY(-8px) rotate(405deg);
+    transform: translateY(-8px) rotate(405deg);
+}
+
+.open .toggle_btn span:nth-child(1) {
+    display: none;
+}
+
+#mask {
+    display: none;
+    transition: all 0.5s;
+}
+
+.open #mask {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    cursor: pointer;
+}
+
+.wrapper {
+    padding: 0 20px;
+}
+
+.wrapper2 {
+    padding-left: 200px;
+}
+
+/* --------------------- main --------------------------- */
+/* --------- top_page --------- */
+#home {
+    background-image: url(img/ellysakuramc08_TP_V.jpg);
+    min-height: 100vh;
+}
+.mainvisual {
+    background-size: cover;
+    background-position: center top;
+}
+.mainvisual .full {
+    margin: 0;
+    position: relative;
+    padding-top: 200px;
+    width: 100%;
+    text-align: center;
+    line-height: 1;
+    font-size: 8vw; 
+    color: #FF99CC;
+    font-family: "Times New Roman", sans-serif;
+    text-shadow: 10px 10px 0 #FFDDFF;
+}
+.btn {
+    position: relative;
+    border: 2px solid #FF99CC;
+    margin: 20px auto 0 auto;
+    width: 250px;
+    background: #fff;
+    border-radius: 50px;
+    overflow: hidden;
+    transition-duration: .4s;
+    transform: .4s cubic-bezier(0.5, 1, 0.89, 1);
+    z-index: 2;
+}
+.btn::after {
+    background: #FF99CC;
+    border-radius: 50%;
+    content: "";
+    display: block;
+    margin: auto;
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    width: 100%;
+    padding-top: 100%;
+    height: 0;
+    z-index: -1;
+    transform: translateY(-50%) scale(0.1);
+    transition: opacity .5s, transform 0s;
+    transition-delay: 0s, .4s;
+}
+.btn:hover {
+    transform: scale(1.1);
+}
+.btn_text:hover {
+    color: #fff;
+}
+.btn_text {
+    display: block;
+    color: #FF99CC;
+    font-size: 20px;
+    text-align: center;
+    padding: 15px 40px;
+}
+.btn:hover::after {
+    opacity: 1;
+    transform: translateY(-50%) scale(1.1);
+    transition-delay: 0s;
+    transition: opacity .8s, transform .6s ease-in-out;
+}
+
+/* --------------------- menu --------------------------- */
+/* --------- menu-title --------- */
+#menu-title {
+    background-image: url(img/ellysakuramc05_TP_V.jpg);
+    min-height: 100vh;
+}
+.teatime-menu {
+    background-size: cover;
+    background-position: center top;
+}
+.teatime-menu .full {
+    margin: 0;
+    position: relative;
+    padding-top: 300px;
+    width: 100%;
+    text-align: center;
+    line-height: 1;
+    font-size: 8vw; 
+    color: #FF99CC;
+    font-family: "Times New Roman", sans-serif;
+    text-shadow: 10px 10px 0 #FFDDFF;
+}
+
+/* --------- menu-list --------- */
+#menu .grid {
+    display: grid;
+    gap: 26px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    margin-top: 6%;
+    margin-bottom: 50px;
+}
+
+/* --------------------- CONTACT --------------------------- */
+/* --------- info-title --------- */
+#info-title {
+    background-image: url(img/ellycollection075_TP_V.jpg);
+    min-height: 100vh;
+}
+.teatime-info {
+    background-size: cover;
+    background-position: center top;
+}
+.teatime-info .full {
+    margin: 0;
+    position: relative;
+    padding-top: 100px;
+    width: 100%;
+    /* text-align: center; */
+    line-height: 1;
+    font-size: 7vw; 
+    color: #FF99CC;
+    font-family: "Times New Roman", sans-serif;
+    text-shadow: 10px 10px 0 #FFDDFF;
+    margin-bottom: 30px;
+}
+/* --------- form --------- */
+form div {
+    margin-bottom: 14px;
+}
+.txt {
+    margin-top: 30px;
+}
+label {
+    font-size: 1.125rem;
+    margin-bottom: 10px;
+    display: block;
+}
+input[type="text"],
+input[type="email"],
+textarea {
+    background: rgba(255, 255, 255, .5)!important;
+    border: 1px solid #fff!important;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 1rem;
+}
+input[type="text"],
+input[type="email"],
+textarea {
+    width: 100%;
+    max-width: 240px;
+}
+textarea {
+    width: 100%;
+    max-width: 480px;
+    height: 6rem;
+}
+input[type="submit"] {
+    border: none;
+    cursor: pointer;
+    line-height: 1;
+}
+.button {
+    display: inline-block;
+    width: 200px;
+    height: 54px;
+    margin-top: 30px;
+    text-align: center;
+    text-decoration: none;
+    line-height: 54px;
+    outline: none;
+    position: relative;
+    -webkit-perspective: 300px;
+    perspective: 300px;
+}
+.button::before,
+.button::after {
+  position: absolute;
+  z-index: -1;
+  display: block;
+  content: '';
+}
+.button,
+.button::before,
+.button::after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-transition: all .3s;
+  transition: all .3s;
+}
+.button span {
+    display: block;
+    position: absolute;
+    width: 200px;
+    height: 60px;
+    border: 2px solid #FF99CC;
+    text-align: center;
+    line-height: 56px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-transition: all .3s;
+    transition: all .3s;
+    pointer-events: none;
+}
+.button span:nth-child(1) {
+    background-color: #FF99CC;
+    color: #fff;
+    -webkit-transform: rotateX(90deg);
+    -moz-transform: rotateX(90deg);
+    transform: rotateX(90deg);
+    -webkit-transform-origin: 50% 50% -30px;
+    -moz-transform-origin: 50% 50% -30px;
+    transform-origin: 50% 50% -30px;
+}
+.button span:nth-child(2) {
+    background-color: #fff;
+    color: #FF99CC;
+    -webkit-transform: rotateX(0deg);
+    -moz-transform: rotateX(0deg);
+    transform: rotateX(0deg);
+    -webkit-transform-origin: 50% 50% -30px;
+    -moz-transform-origin: 50% 50% -30px;
+    transform-origin: 50% 50% -30px;
+}
+  .button:hover span:nth-child(1) {
+    -webkit-transform: rotateX(0deg);
+    -moz-transform: rotateX(0deg);
+    transform: rotateX(0deg);
+}
+.button:hover span:nth-child(2) {
+    background-color: #FF99CC;
+    -webkit-transform: rotateX(-90deg);
+    -moz-transform: rotateX(-90deg);
+    transform: rotateX(-90deg);
+}
+/* ----------- location-map ------------*/
+h3 {
+    font-family:  "Hannari", serif!important;
+    font-weight: normal;
+    font-size: 25px;
+    border-bottom: 2px solid #FF99CC;
+    width: 180px;
+    margin: 80px 0 20px 0;
+}
+.info {
+    display: flex;
+    justify-content: center;
+}
+.location-map {
+    margin: 80px 0;
+    margin-left: 20px;
+}
+
+/* --------------------- footer --------------------------- */
+#footer {
+    background-color: #432;
+    padding: 20px 0;
+}
+#footer p {
+    color: #FFDDFF;
+    text-align: center;
+}
+/* ---------------- sns --------------- */
+#sns {
+    background: #FAF7F0;
+    padding: 4% 0;
+}
+.sns-position {
+    display: flex;
+    justify-content: center;
+}
+.ss {
+    margin-left: 60px;
+}
+.sns-box .sub-title {
+    width: 340px;
+}
